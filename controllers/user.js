@@ -178,7 +178,7 @@
         console.log('Current user')
         if (req.user == null) {
             res.status(401);
-            res.json({message:'User not found'});
+            res.json({message:'User not logged in'});
         } else {
             res.json(req.user);
         }
