@@ -26,7 +26,7 @@ var connectAssets = require('connect-assets');
 
 var homeController = require('./controllers/home');
 var userController = require('./controllers/user');
-var dummyController = require('./controllers/dummy');
+//var dummyController = require('./controllers/dummy');
 
 /*
  * API keys and Passport configuration.
@@ -117,7 +117,7 @@ app.use(express.static(path.join(__dirname, 'public'), { maxAge: 1 }));
 
 console.log("starting");
 app.get('/', homeController.index);
-app.get('/dummy', dummyController.index);
+//app.get('/dummy', dummyController.index);
 
 
 
@@ -127,6 +127,7 @@ app.get('/auth/linkedin/callback', passport.authenticate('linkedin', { failureRe
 });
 
 app.post('/user/create', userController.createUser);
+app.get('/user', userController.getUser);
 
 
 
