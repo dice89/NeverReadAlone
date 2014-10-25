@@ -130,7 +130,7 @@ app.get('/auth/linkedin/callback', passport.authenticate('linkedin', { failureRe
 
 app.post('/user/create', userController.createUser);
 app.get('/user', userController.getUser);
-
+app.put('/user',userController.postUser);
 
 
 

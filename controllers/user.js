@@ -75,7 +75,7 @@ exports.getUser = function(req, res, next) {
         .then(function(data) {
             res.json(data);
         }, function(err) {
-            return nrext(err);
+            return next(err);
         });
 
 };
@@ -83,31 +83,62 @@ exports.getUser = function(req, res, next) {
 
 
 exports.postUser = function(req, res) {
-    var update_user = req.body.user;
+    console.log(req.body);
 
+    var user = req.body
+
+    res.json(req.body);
+   
+    //console.log(update_user.email);
+/*
+    User.findOne({
+        email: req.update_user.email
+    }, function(err, user) {
+        console.log(user);
+    });
+
+*/
 };
 
+
+/*
+var userSchema = new mongoose.Schema({
+  email: { type: String, unique: true, lowercase: true },
+  password: String,
+  linkedin: String,
+  tokens: Array,
+  expertise:String,
+  contactRequest: [{
+  time:String,
+  contact:{type: mongoose.Schema.Types.ObjectId, ref: 'User'}
+}],
+  geo: { 'type': {type: String, enum: "Point", default: "Point"}, coordinates: { type: [Number],   default: [0,0]} },
+  profile: {
+    name: { type: String, default: '' },
+    gender: { type: String, default: '' },
+    location: { type: String, default: '' },
+    website: { type: String, default: '' },
+    picture: { type: String, default: '' }
+  },
+
+  resetPasswordToken: String,
+  resetPasswordExpires: Date
+});*/
 exports.getOneUser = function(req, res, next){
 	console.log("Fetch a user");
-
-
     
 
 };
 
-exports.getOneUser = function(req, res, next) {
-
-
-};
-
-
 exports.createUser = function(req, res, next) {
 
-
+  /*
     req.assert('email', 'Email is not valid').isEmail();
     req.assert('password', 'Password must be at least 4 characters long').len(4);
     req.assert('name', 'Name needs to be at least 1 character long').len(1);
+*/
 
+    console.log(req.body);
     var errors = req.validationErrors();
 
     if (errors) {
@@ -124,7 +155,7 @@ exports.createUser = function(req, res, next) {
         },
         geo: {
             type: "Point",
-            coordinates: [parseFloat(req.body.lng), parseFloat(req.body.lat)]
+            coordinates: [parseFloat(req.body.geo.longitude), parseFloat(req.body.geo.latitude)]
         }
     });
 
