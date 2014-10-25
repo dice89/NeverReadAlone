@@ -14,13 +14,33 @@
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css({.tmp,app}) styles/main.css -->
+    <link rel="stylesheet" href="styles/skel.css" />
+    <link rel="stylesheet" href="styles/style.css" />
+    <link rel="stylesheet" href="styles/style-wide.css" />
     <link rel="stylesheet" href="styles/main.css">
+
     <!-- endbuild -->
   </head>
   <body ng-app="expertApp">
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
+
+    <!-- Header -->
+      <div id="header">
+        <!-- Nav -->
+          <nav id="nav">
+            <ul>
+              <li ng-class="{current:current=='home'}"><a ng-href="/">Home</a></li>
+              <li ng-class="{current:current=='experts'}" ><a ng-href="#experts"  href="#">Experts</a></li>
+              <li ng-class="{current:current=='register'}"><a ng-href="#register">Register</a></li>
+              <li><a href="#">Bla</a></li>
+              <li><a href="#">Bla</a></li>
+              <li><a href="#">Bla</a></li>
+            </ul>
+          </nav>
+
+      </div>
 
     <!-- Add your site or application content here -->
     <div class="container" ng-view=""></div>
@@ -54,6 +74,8 @@
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
         <script src="scripts/controllers/main.js"></script>
+        <script src="scripts/controllers/auth.js"></script>
+        <script src="scripts/controllers/experts.js"></script>
         <!-- endbuild -->
 </body>
 </html>
