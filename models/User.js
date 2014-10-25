@@ -5,14 +5,13 @@ var crypto = require('crypto');
 var userSchema = new mongoose.Schema({
   email: { type: String, unique: true, lowercase: true },
   password: String,
-
-  facebook: String,
-  twitter: String,
-  google: String,
-  github: String,
-  instagram: String,
   linkedin: String,
   tokens: Array,
+  expertise:String,
+  contactRequest: [{
+	time:String,
+	contact:{type: mongoose.Schema.Types.ObjectId, ref: 'User'}
+}],
 
   profile: {
     name: { type: String, default: '' },
@@ -25,6 +24,8 @@ var userSchema = new mongoose.Schema({
   resetPasswordToken: String,
   resetPasswordExpires: Date
 });
+
+
 
 /**
  * Hash the password for security.
