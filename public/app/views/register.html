@@ -1,17 +1,17 @@
 <section class="register">
-              <form>
+              <form name="register">
                 <div class="row half">
                   <div class="12u">
-                    <input type="text" name="name" id="name" placeholder="Name">
+                    <input ng-model="newAccount.name" type="text" name="name" id="name" placeholder="Name">
                   </div>
                   <div class="12u">
-                    <input type="email" name="email" id="email" placeholder="Email">
+                    <input ng-model="newAccount.email" type="email" name="email" id="email" placeholder="Email">
                   </div>
                   <div class="12u">
-                    <input type="password" name="password" id="password" placeholder="Password">
+                    <input ng-model="newAccount.password" type="password" name="password" id="password" placeholder="Password">
                   </div>
                 </div>
-                <button class="button btn">Register</button>
-                <button class="button btn li">Linkedin</button>
+                <button ng-click="submit()" class="button btn">Register</button>
+                <button ng-click="linkedin()" class="button btn li">Linkedin</button>
               </form>
             </section>

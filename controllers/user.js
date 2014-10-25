@@ -152,6 +152,65 @@
             });
 
         });
+<<<<<<< HEAD
+=======
+       
+    });
+
+};
+
+exports.currentUser = function(req, res, next){
+    console.log('Current user')
+    if (req.user==null){
+      return next(new Error("Can not found the User"));
+    }else{
+     res.json(req.user);
+    }
+}
+
+exports.getOneUser = function(req, res, next){
+	var userId=req.param('id');
+    User.findOne({_id:userId},function (err, user) {
+	  if (err) return console.error(err);
+      console.log(user +" user is fetched");
+      res.json(user);
+	});
+
+};
+
+exports.search = function(req, res, next){
+    var search=req.param('search');
+    console.log('search' + search);   
+    User.find({ $text : { $search : search }},function(err,users){
+         res.json(users);
+    });
+    
+}
+
+exports.createUser = function(req, res, next) {
+
+
+    console.log(req.body);
+    var errors = req.validationErrors();
+
+    if (errors) {
+        req.flash('errors', errors);
+        return res.redirect('/signup');
+    }
+
+    //'type': {type: String, enum: "Point", default: "Point"}, coordinates: { type: [Number],   default: [0,0]} },
+    var user = new User({
+        email: req.body.email,
+        password: req.body.password,
+        profile: {
+            name: req.body.name
+        },
+        geo: {
+            type: "Point",
+            coordinates: [parseFloat(req.body.geo.longitude), parseFloat(req.body.geo.latitude)]
+        }
+    });
+>>>>>>> 95c961fc74f34fd3f4befcd6b34618dfeff0179f
 
     };
 

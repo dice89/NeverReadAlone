@@ -46,45 +46,16 @@
           <div class="container">
 
           <header>
-            <h2>Experts by category</h2>
-            <p>Design</p>
+            <h2>Experts in your area</h2>
           </header>
 
             <div class="row">
-              <section class="6u">
+
+              <section ng-repeat="expert in experts" class="6u">
                 <div class="box post">
-                  <a href="#" class="image left"><img src="http://cnet4.cbsistatic.com/hub/i/2013/09/17/bb225c88-6de0-11e3-913e-14feb5ca9861/67e7d6bd696442e31053ba3b46c4acc6/Screen_Shot_2012-11-02_at_9.41.42_AM.png" alt=""></a>
+                  <a ng-href="#/experts/{{expert._id}}" class="image left"><img src="http://cnet4.cbsistatic.com/hub/i/2013/09/17/bb225c88-6de0-11e3-913e-14feb5ca9861/67e7d6bd696442e31053ba3b46c4acc6/Screen_Shot_2012-11-02_at_9.41.42_AM.png" alt=""></a>
                   <div class="inner">
-                    <h3>Jonathan Ive</h3>
-                    <p>Duis neque nisi, dapibus sed mattis et quis, nibh. Sed et dapibus nisl amet mattis, sed a rutrum accumsan sed. Suspendisse eu.</p>
-                  </div>
-                </div>
-              </section>
-              <section class="6u">
-                <div class="box post">
-                  <a href="#" class="image left"><img src="http://cnet4.cbsistatic.com/hub/i/2013/09/17/bb225c88-6de0-11e3-913e-14feb5ca9861/67e7d6bd696442e31053ba3b46c4acc6/Screen_Shot_2012-11-02_at_9.41.42_AM.png" alt=""></a>
-                  <div class="inner">
-                    <h3>Jonathan Ive</h3>
-                    <p>Duis neque nisi, dapibus sed mattis et quis, nibh. Sed et dapibus nisl amet mattis, sed a rutrum accumsan sed. Suspendisse eu.</p>
-                  </div>
-                </div>
-              </section>
-            </div>
-            <div class="row">
-              <section class="6u">
-                <div class="box post">
-                  <a href="#" class="image left"><img src="http://cnet4.cbsistatic.com/hub/i/2013/09/17/bb225c88-6de0-11e3-913e-14feb5ca9861/67e7d6bd696442e31053ba3b46c4acc6/Screen_Shot_2012-11-02_at_9.41.42_AM.png" alt=""></a>
-                  <div class="inner">
-                    <h3>Jonathan Ive</h3>
-                    <p>Duis neque nisi, dapibus sed mattis et quis, nibh. Sed et dapibus nisl amet mattis, sed a rutrum accumsan sed. Suspendisse eu.</p>
-                  </div>
-                </div>
-              </section>
-              <section class="6u">
-                <div class="box post">
-                  <a href="#" class="image left"><img src="http://cnet4.cbsistatic.com/hub/i/2013/09/17/bb225c88-6de0-11e3-913e-14feb5ca9861/67e7d6bd696442e31053ba3b46c4acc6/Screen_Shot_2012-11-02_at_9.41.42_AM.png" alt=""></a>
-                  <div class="inner">
-                    <h3>Jonathan Ive</h3>
+                    <h3>{{expert.profile.name}}</h3>
                     <p>Duis neque nisi, dapibus sed mattis et quis, nibh. Sed et dapibus nisl amet mattis, sed a rutrum accumsan sed. Suspendisse eu.</p>
                   </div>
                 </div>

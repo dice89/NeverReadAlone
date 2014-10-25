@@ -33,10 +33,17 @@
             <ul>
               <li ng-class="{current:current=='home'}"><a ng-href="/">Home</a></li>
               <li ng-class="{current:current=='experts'}" ><a ng-href="#experts"  href="#">Experts</a></li>
-              <li ng-class="{current:current=='register'}"><a ng-href="#register">Register</a></li>
-              <li><a href="#">Bla</a></li>
-              <li><a href="#">Bla</a></li>
-              <li><a href="#">Bla</a></li>
+
+              <li ng-class="{current:current=='account'}">
+                <a href="">Account</a>
+                <ul>
+                  <li ng-class="{current:current=='login'}"><a ng-href="#login">Profile</a></li>
+                  <li ng-class="{current:current=='login'}"><a ng-href="#login">Login</a></li>
+                  <li ng-class="{current:current=='register'}"><a ng-href="#register">Register</a></li>
+                  <li ng-class="{current:current=='register'}"><a ng-click="Auth.logout()"  ng-href="">Logout</a></li>
+
+                </ul>
+
             </ul>
           </nav>
 
@@ -72,7 +79,13 @@
     <!-- endbuild -->
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
+        <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <script src="scripts/jquery.dropotron.min.js"></script>
+        <script src="scripts/skel.min.js"></script>
+        <script src="scripts/init.js"></script>
+
         <script src="scripts/app.js"></script>
+        <script src="scripts/services/auth.js"></script>
         <script src="scripts/controllers/main.js"></script>
         <script src="scripts/controllers/auth.js"></script>
         <script src="scripts/controllers/experts.js"></script>
