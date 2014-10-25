@@ -80,14 +80,16 @@ exports.getUser = function(req, res, next) {
 
 };
 
-<<<<<<< HEAD
+
 
 exports.postUser = function(req, res) {
     var update_user = req.body.user;
-=======
+
+};
+
 exports.getOneUser = function(req, res, next){
 	console.log("Fetch a user");
->>>>>>> fae142cf3c1e0c349714098cde0e45e60b251fba
+
 
     
 
