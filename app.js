@@ -26,6 +26,7 @@ var connectAssets = require('connect-assets');
 
 var homeController = require('./controllers/home');
 var userController = require('./controllers/user');
+var dummyController = require('./controllers/dummy');
 
 /*
  * API keys and Passport configuration.
@@ -116,6 +117,7 @@ app.use(express.static(path.join(__dirname, 'public'), { maxAge: 1 }));
 
 console.log("starting");
 app.get('/', homeController.index);
+app.get('/dummy', dummyController.index);
 
 
 app.get('/user', userController.se)
