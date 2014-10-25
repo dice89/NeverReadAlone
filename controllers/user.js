@@ -175,7 +175,7 @@
 
             if ($in.recommendationsReceived._total > 0) {
                 $in.recommendationsReceived.values.forEach(function(element) {
-                    recommText = recommText + element.text;
+                    recommText = recommText + " " + element.recommendationText;
                 });
 
                 var words = logic.process(recommText);
