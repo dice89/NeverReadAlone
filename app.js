@@ -124,8 +124,9 @@ app.get('/', homeController.index);
 //
 
 app.post('/login',userController.apiLogin);
-
 app.post('/logout',userController.apiLogout);
+
+
 app.get('/user/:id', userController.getOneUser);
 
 app.get('/auth/linkedin', passport.authenticate('linkedin', { state: 'SOME STATE' }));
@@ -135,7 +136,7 @@ app.get('/auth/linkedin/callback', passport.authenticate('linkedin', { failureRe
 
 app.post('/user/create', userController.createUser);
 app.get('/user', userController.getUser);
-app.put('/user',userController.postUser);
+app.put('/user',userController.putUser);
 
 
 

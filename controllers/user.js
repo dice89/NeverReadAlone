@@ -82,21 +82,27 @@ exports.getUser = function(req, res, next) {
 
 
 
-exports.postUser = function(req, res) {
+exports.putUser = function(req, res) {
     console.log(req.body);
     var user = req.body;
 
-    res.json(req.body);
-   
-    //console.log(update_user.email);
-/*
-    User.findOne({
-        email: req.update_user.email
-    }, function(err, user) {
-        console.log(user);
-    });
 
-*/
+    //res.json(req.body);
+    //console.log(update_user.email);
+
+    User.findOne({
+        _id: user._id
+    }, function(err, db_user) {
+        db_user.profile = user.profile;
+
+
+
+        db_user.save(function(err,data){
+
+           res.json(data);
+        });
+       
+    });
 
 };
 
@@ -104,45 +110,14 @@ exports.getOneUser = function(req, res, next){
 	var userId=req.param('id');
     User.findOne({_id:userId},function (err, user) {
 	  if (err) return console.error(err);
-	  
       console.log(user +" user is fetched");
       res.json(user);
 	});
 
 };
 
-
-/*
-var userSchema = new mongoose.Schema({
-  email: { type: String, unique: true, lowercase: true },
-  password: String,
-  linkedin: String,
-  tokens: Array,
-  expertise:String,
-  contactRequest: [{
-  time:String,
-  contact:{type: mongoose.Schema.Types.ObjectId, ref: 'User'}
-}],
-  geo: { 'type': {type: String, enum: "Point", default: "Point"}, coordinates: { type: [Number],   default: [0,0]} },
-  profile: {
-    name: { type: String, default: '' },
-    gender: { type: String, default: '' },
-    location: { type: String, default: '' },
-    website: { type: String, default: '' },
-    picture: { type: String, default: '' }
-  },
-
-  resetPasswordToken: String,
-  resetPasswordExpires: Date
-});*/
-
 exports.createUser = function(req, res, next) {
 
-  /*
-    req.assert('email', 'Email is not valid').isEmail();
-    req.assert('password', 'Password must be at least 4 characters long').len(4);
-    req.assert('name', 'Name needs to be at least 1 character long').len(1);
-*/
 
     console.log(req.body);
     var errors = req.validationErrors();
@@ -176,7 +151,7 @@ exports.createUser = function(req, res, next) {
             if (err) return next(err);
             req.logIn(user, function(err) {
                 if (err) return next(err);
-                res.json("User created");
+                res.json(user);
             });
         });
     });
