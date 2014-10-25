@@ -121,7 +121,7 @@ app.get('/', homeController.index);
 
 
 //User Management
-app.get('/user/:id', userController.getOneUser)
+app.get('/user/:id', userController.getOneUser);
 
 app.get('/auth/linkedin', passport.authenticate('linkedin', { state: 'SOME STATE' }));
 app.get('/auth/linkedin/callback', passport.authenticate('linkedin', { failureRedirect: '/login' }), function(req, res) {
