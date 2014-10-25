@@ -134,13 +134,11 @@ exports.getOneUser = function(req, res, next){
 
 exports.search = function(req, res, next){
     var search=req.param('search');
-    console.log(search);   
-    mongoose.connect(process.env.MONGOHQ_URL, function(err, database) {
-        db = database;
-        db.users.find(   { $text : { $search : " " }});
+    console.log('search' + search);   
+    User.find({ $text : { $search : search }},function(err,users){
+         res.json(users);
     });
-    //db.collection("textstore", { }, function(err, coll) {
-   //db.collection.find({$text:{$search:"1234 6789"}},{'id':1})
+    
 }
 
 exports.createUser = function(req, res, next) {
