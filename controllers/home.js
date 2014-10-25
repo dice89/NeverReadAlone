@@ -4,6 +4,10 @@
  */
 
 exports.index = function(req, res) {
-    res.json({message:"HelloWorld"});
-
+  
+    if(req.user){
+          res.json({message:"Logged In"});
+    }else{
+          res.json({message:"Logged Out"});
+    }
 };

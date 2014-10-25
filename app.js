@@ -123,7 +123,9 @@ app.get('/', homeController.index);
 //User Management
 //
 
-app.post('/login',user.apiLogin);
+app.post('/login',userController.apiLogin);
+
+app.post('/logout',userController.apiLogout);
 app.get('/user/:id', userController.getOneUser);
 
 app.get('/auth/linkedin', passport.authenticate('linkedin', { state: 'SOME STATE' }));
