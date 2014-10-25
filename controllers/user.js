@@ -84,8 +84,7 @@ exports.getUser = function(req, res, next) {
 
 exports.postUser = function(req, res) {
     console.log(req.body);
-
-    var user = req.body
+    var user = req.body;
 
     res.json(req.body);
    
@@ -98,6 +97,19 @@ exports.postUser = function(req, res) {
     });
 
 */
+
+};
+
+exports.getOneUser = function(req, res, next){
+	var userId=req.param('id');
+    var user;
+    User.findOne({id:userId},function (err, user) {
+	  if (err) return console.error(err);
+	  
+      console.log(user +" user is fetched");
+      res.json(user);
+	});
+
 };
 
 
