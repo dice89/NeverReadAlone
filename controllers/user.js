@@ -44,6 +44,27 @@ exports.getFblink = function(req,res){
 
 
 
+exports.getUser = function(req, res){
+  
+};
+
+
+exports.postUser = function(req,res){
+  //TODO
+};
+
+exports.getOneUser = function(req, res, next){
+
+
+};
+
+
+
+exports.postUser = function(req, res, next){
+  
+}
+
+
 /**
  * GET /account/unlink/:provider
  * Unlink OAuth provider.
