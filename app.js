@@ -118,21 +118,17 @@ console.log("starting");
 app.get('/', homeController.index);
 
 
-app.get('/user', userController.se)
-//Layer API simple securing
-app.post('/api/layer/login', userController.apiLogin);
-app.post('/api/layer/logout', userController.apiLogout);
-
-//Link with Facebook Account
-app.get('/auth/facebook', passport.authenticate('facebook', { scope: ['email', 'user_location'] }));
-app.get('/auth/facebook/callback', passport.authenticate('facebook', { failureRedirect: '/login' }), function(req, res) {
-  res.redirect('/');
-});
 
 app.get('/auth/linkedin', passport.authenticate('linkedin', { state: 'SOME STATE' }));
 app.get('/auth/linkedin/callback', passport.authenticate('linkedin', { failureRedirect: '/login' }), function(req, res) {
   res.redirect(req.session.returnTo || '/');
 });
+
+app.post('/user/create', userController.createUser);
+
+
+
+
 /**
  * 500 Error Handler.
  */

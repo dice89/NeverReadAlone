@@ -18,7 +18,7 @@
 
 module.exports = {
 
-  db: process.env.MONGODB|| 'mongodb://localhost:27017/test',
+  db: process.env.MONGODB|| 'mongodb://localhost:27017/expertfinder',
 
   sessionSecret: process.env.SESSION_SECRET || 'teste',
 
@@ -33,7 +33,13 @@ module.exports = {
     clientSecret: process.env.FACEBOOK_SECRET || 'bcf4c7f2dc48eb2805de71514c1b7443',
     callbackURL: '/auth/facebook/callback',
     passReqToCallback: true
-  }
+  },
 
-  
+  linkedin: {
+    clientID: process.env.LINKEDIN_ID || '75uqqbf8oexofj',
+    clientSecret: process.env.LINKEDIN_SECRET || 'DWW8o68egvqIYbqa',
+    callbackURL: '/auth/linkedin/callback',
+    scope: ['r_fullprofile'],
+    passReqToCallback: true
+  },
 };
