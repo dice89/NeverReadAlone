@@ -1,4 +1,4 @@
-var _ = require('lodash');
+    var _ = require('lodash');
 var async = require('async');
 var crypto = require('crypto');
 var nodemailer = require('nodemailer');
@@ -102,8 +102,7 @@ exports.postUser = function(req, res) {
 
 exports.getOneUser = function(req, res, next){
 	var userId=req.param('id');
-    var user;
-    User.findOne({id:userId},function (err, user) {
+    User.findOne({_id:userId},function (err, user) {
 	  if (err) return console.error(err);
 	  
       console.log(user +" user is fetched");
@@ -136,11 +135,6 @@ var userSchema = new mongoose.Schema({
   resetPasswordToken: String,
   resetPasswordExpires: Date
 });*/
-exports.getOneUser = function(req, res, next){
-	console.log("Fetch a user");
-    
-
-};
 
 exports.createUser = function(req, res, next) {
 
