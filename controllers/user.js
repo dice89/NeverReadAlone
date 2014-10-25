@@ -57,7 +57,7 @@ exports.postUser = function(req,res){
 };
 
 exports.getOneUser = function(req, res, next){
-
+	console.log("Fetch a user");
 
 };
 
