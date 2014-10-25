@@ -120,6 +120,8 @@ app.get('/', homeController.index);
 //app.get('/dummy', dummyController.index);
 
 
+//User Management
+app.get('/user/1', userController.getOneUser)
 
 app.get('/auth/linkedin', passport.authenticate('linkedin', { state: 'SOME STATE' }));
 app.get('/auth/linkedin/callback', passport.authenticate('linkedin', { failureRedirect: '/login' }), function(req, res) {
