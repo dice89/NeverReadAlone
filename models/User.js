@@ -12,7 +12,7 @@ var userSchema = new mongoose.Schema({
 	time:String,
 	contact:{type: mongoose.Schema.Types.ObjectId, ref: 'User'}
 }],
-
+  geo: { 'type': {type: String, enum: "Point", default: "Point"}, coordinates: { type: [Number],   default: [0,0]} },
   profile: {
     name: { type: String, default: '' },
     gender: { type: String, default: '' },
@@ -26,7 +26,7 @@ var userSchema = new mongoose.Schema({
 });
 
 
-
+userSchema.index({ "geo" : "2dsphere"});
 /**
  * Hash the password for security.
  * "Pre" is a Mongoose middleware that executes before each user.save() call.

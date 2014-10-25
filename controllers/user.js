@@ -45,12 +45,15 @@ exports.getFblink = function(req,res){
 
 
 exports.getUser = function(req, res){
-  
+
+  User.find({ occupation: /host/ })
+
 };
 
 
 exports.postUser = function(req,res){
-  //TODO
+
+  
 };
 
 exports.getOneUser = function(req, res, next){
@@ -59,10 +62,47 @@ exports.getOneUser = function(req, res, next){
 };
 
 
+exports.createUser = function(req, res, next) {
 
-exports.postUser = function(req, res, next){
-  
-}
+
+  req.assert('email', 'Email is not valid').isEmail();
+  req.assert('password', 'Password must be at least 4 characters long').len(4);
+  req.assert('name', 'Name needs to be at least 1 character long').len(1);
+  req.assert('geo','specify geo loc');
+
+
+  console.log(JSON.parse(req.body.geo));
+  var errors = req.validationErrors();
+
+  if (errors) {
+    req.flash('errors', errors);
+    return res.redirect('/signup');
+  }
+
+//'type': {type: String, enum: "Point", default: "Point"}, coordinates: { type: [Number],   default: [0,0]} },
+  var user = new User({
+    email: req.body.email,
+    password: req.body.password,
+    profile:{
+      name: req.body.name
+    },
+    geo: {type:"Point", coordinates:[req.body.geo.lng, req.body.geo.lat]}
+  });
+
+  User.findOne({ email: req.body.email }, function(err, existingUser) {
+    if (existingUser) {
+      return  next(new Error("Already found a User"));
+
+    }
+    user.save(function(err) {
+      if (err) return next(err);
+      req.logIn(user, function(err) {
+        if (err) return next(err);
+          res.json("User created");
+      });
+    });
+  });
+};
 
 
 /**
