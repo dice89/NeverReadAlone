@@ -119,6 +119,7 @@ console.log("starting");
 app.get('/', homeController.index);
 //app.get('/dummy', dummyController.index);
 
+app.get('/twitter', homeController.test);
 
 //User Management
 //
@@ -133,9 +134,16 @@ app.get('/auth/linkedin', passport.authenticate('linkedin', { state: 'SOME STATE
 app.get('/auth/linkedin/callback', passport.authenticate('linkedin', { failureRedirect: '/login' }), function(req, res) {
   res.redirect(req.session.returnTo || '/');
 });
+app.get('/auth/twitter', passport.authenticate('twitter'));
+app.get('/auth/twitter/callback', passport.authenticate('twitter', { failureRedirect: '/login' }), function(req, res) {
+  res.redirect(req.session.returnTo || '/');
+});
+
 
 app.post('/user/create', userController.createUser);
 app.get('/user', userController.getUser);
+
+app.get('/twitter/:id', userController.getTwitterByID);
 app.put('/user',userController.putUser);
 
 

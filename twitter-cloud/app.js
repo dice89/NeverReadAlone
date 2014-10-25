@@ -35,8 +35,8 @@ if (process.env.VCAP_SERVICES) {
    	            "username":"",
                 "password":"",
                 "name":"",
-                "db":"db",
-                "url":"mongodb://127.0.0.1:27017/db" };
+                "db":"expertfinder",
+                "url":"mongodb://127.0.0.1:27017/expertfinder" };
                 
     path = mongo.url;
 }
@@ -73,7 +73,7 @@ MongoClient.connect( path, function(err, followersDatabase) {
 
     var consumer = new oauth.OAuth(
         "https://twitter.com/oauth/request_token", "https://twitter.com/oauth/access_token",
-        process.env.TWITTER_CONSUMER_KEY, process.env.TWITTER_CONSUMER_SECRET, "1.0A", _callBackPage, "HMAC-SHA1");
+        'QEyHogxFosApsZiVKtg5YYm7O', 'e4OMcys2ESx7dgOD5KiHtu6dlyxN1KiwFN84mvySqbbE8Fmfaw', "1.0A", _callBackPage, "HMAC-SHA1");
 
         app.use(errorHandler({ dumpExceptions: true, showStack: true }));
         app.use(logger());
@@ -391,6 +391,8 @@ MongoClient.connect( path, function(err, followersDatabase) {
     });
 
     app.get('/sessions/connect', function(req, res){
+
+
       consumer.getOAuthRequestToken(function(error, oauthToken, oauthTokenSecret, results){
         if (error) {
           res.send("Error getting OAuth request token : " + util.inspect(error), 500);
@@ -410,6 +412,7 @@ MongoClient.connect( path, function(err, followersDatabase) {
         if( error ){
             
             /* TODO: CREATE AN ERROR PAGE HERE, REQUESTING THEY TRY AGAIN */    
+     console.log( error );
             
           res.send("Error getting OAuth access token : " + util.inspect(error) + "["+oauthAccessToken+"]"+ "["+oauthAccessTokenSecret+"]"+ "["+util.inspect(results)+"]", 500); 
             

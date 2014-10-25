@@ -42,4 +42,10 @@ module.exports = {
     scope: ['r_fullprofile'],
     passReqToCallback: true
   },
+  twitter: {
+    consumerKey: process.env.TWITTER_KEY || '6NNBDyJ2TavL407A3lWxPFKBI',
+    consumerSecret: process.env.TWITTER_SECRET  || 'ZHaYyK3DQCqv49Z9ofsYdqiUgeoICyh6uoBgFfu7OeYC7wTQKa',
+    callbackURL: '/auth/twitter/callback',
+    passReqToCallback: true
+  },
 };

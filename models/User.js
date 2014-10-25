@@ -6,6 +6,7 @@ var userSchema = new mongoose.Schema({
   email: { type: String, unique: true, lowercase: true },
   password: String,
   linkedin: String,
+  twitter: String,
   tokens: Array,
   expertise:String,
   contactRequest: [{
