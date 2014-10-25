@@ -93,12 +93,19 @@ exports.putUser = function(req, res) {
     User.findOne({
         _id: user._id
     }, function(err, db_user) {
+        db_user.email = user.email;
+        db_user.password= user.password;
+        db_user.linkedin = user.linkedin;
+        db_user.tokens = user.tokens;
+        db_user.expertise = user.expertise;
+        db_user.contactRequest = user.contactRequest;
         db_user.profile = user.profile;
-
-
-
+        db_user.geo = user.geo;
         db_user.save(function(err,data){
-
+           if(error){
+                console.log(error);
+                return next(new Error("User can not be saved"));
+            }
            res.json(data);
         });
        
