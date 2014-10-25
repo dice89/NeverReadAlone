@@ -117,9 +117,7 @@ app.use(express.static(path.join(__dirname, 'public'), { maxAge: 1 }));
 
 console.log("starting");
 app.get('/', homeController.index);
-app.get('/dummy', dummyController.index);
 
-app.get('/twitter', homeController.test);
 
 //User Management
 //
@@ -135,11 +133,11 @@ app.get('/self', userController.currentUser);
 app.post('/user/:id/addRequest', userController.addRequest);
 app.get('/auth/linkedin', passport.authenticate('linkedin', { state: 'SOME STATE' }));
 app.get('/auth/linkedin/callback', passport.authenticate('linkedin', { failureRedirect: '/login' }), function(req, res) {
-  res.redirect(req.session.returnTo || '/');
+  res.redirect( '/');
 });
 app.get('/auth/twitter', passport.authenticate('twitter'));
 app.get('/auth/twitter/callback', passport.authenticate('twitter', { failureRedirect: '/login' }), function(req, res) {
-  res.redirect(req.session.returnTo || '/');
+  res.redirect('/');
 });
 
 

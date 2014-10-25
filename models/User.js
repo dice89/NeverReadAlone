@@ -10,6 +10,7 @@ var userSchema = new mongoose.Schema({
     },
     password: String,
     linkedin: String,
+    twitter:String,
     tokens: Array,
     expertise: String,
     contactRequest: [{

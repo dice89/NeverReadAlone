@@ -114,7 +114,7 @@
     };
 
     exports.getTwitterByID = function(req, res, next) {
-
+        if(!req.user) res.redirect('/');
         var token = _.find(req.user.tokens, {
             kind: 'twitter'
         });
@@ -128,6 +128,9 @@
         User.findOne({
             _id: user_id
         }, function(err, db_user) {
+            if(err) return next(err);
+
+            if(db_user== null) return res.json({text:"no such user"});
             T.get('/statuses/user_timeline', {
                 user_id: db_user.twitter,
                 count: 100
