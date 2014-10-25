@@ -88,11 +88,13 @@ exports.postUser = function(req, res) {
 };
 
 exports.getOneUser = function(req, res, next){
-	console.log("Fetch a user");
-
-
-    
-
+	var userId=req.param('id');
+    User.findOne({id:userId},function (err, user) {
+	  if (err) return console.error(err);
+	  
+      console.log(user +" user is fetched");
+      res.json(user});
+	});
 };
 
 exports.getOneUser = function(req, res, next) {
