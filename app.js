@@ -117,7 +117,7 @@ app.use(express.static(path.join(__dirname, 'public'), { maxAge: 1 }));
 
 console.log("starting");
 app.get('/', homeController.index);
-//app.get('/dummy', dummyController.index);
+app.get('/dummy', dummyController.index);
 
 
 //User Management
