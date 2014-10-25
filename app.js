@@ -128,6 +128,8 @@ app.post('/logout',userController.apiLogout);
 
 
 app.get('/user/:id', userController.getOneUser);
+app.get('/search/:search', userController.search);
+app.get('/self', userController.currentUser);
 
 app.get('/auth/linkedin', passport.authenticate('linkedin', { state: 'SOME STATE' }));
 app.get('/auth/linkedin/callback', passport.authenticate('linkedin', { failureRedirect: '/login' }), function(req, res) {

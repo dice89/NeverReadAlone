@@ -5,7 +5,7 @@ var nodemailer = require('nodemailer');
 var passport = require('passport');
 var User = require('../models/User');
 var secrets = require('../config/secrets');
-
+var mongoose = require('mongoose');
 
 exports.apiLogin = function(req, res, next) {
     req.assert('email', 'Email is not valid').isEmail();
@@ -113,6 +113,15 @@ exports.putUser = function(req, res) {
 
 };
 
+exports.currentUser = function(req, res, next){
+    console.log('Current user')
+    if (req.user==null){
+      return next(new Error("Can not found the User"));
+    }else{
+     res.json(req.user);
+    }
+}
+
 exports.getOneUser = function(req, res, next){
 	var userId=req.param('id');
     User.findOne({_id:userId},function (err, user) {
@@ -122,6 +131,17 @@ exports.getOneUser = function(req, res, next){
 	});
 
 };
+
+exports.search = function(req, res, next){
+    var search=req.param('search');
+    console.log(search);   
+    mongoose.connect(process.env.MONGOHQ_URL, function(err, database) {
+        db = database;
+        db.users.find(   { $text : { $search : " " }});
+    });
+    //db.collection("textstore", { }, function(err, coll) {
+   //db.collection.find({$text:{$search:"1234 6789"}},{'id':1})
+}
 
 exports.createUser = function(req, res, next) {
 
