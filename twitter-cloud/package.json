@@ -1,0 +1,21 @@
+{
+  "name": "ProfileWords",
+  "version": "v0.0.1",
+  "description": "A tool for analyzing Twitter accounts, using follower's bios",
+  "dependencies": {
+    "mongodb": "*",
+    "express": "*",
+    "twit": "~1.1.11",
+    "cookie-parser": "*",
+    "express-session": "~1.0.3",
+    "errorhandler": "*",
+    "morgan": "*",
+    "request":"*",
+    "multiparty":"*",
+    "oauth": "*"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "repository": {}
+}

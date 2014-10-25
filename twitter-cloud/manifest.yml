@@ -1,0 +1,11 @@
+applications:
+- services:
+  - MongoLab-follower
+  disk_quota: 2048M
+  host: profiles
+  name: profiles
+  command: node app.js
+  path: .
+  domain: mybluemix.net
+  instances: 2
+  memory: 2048M
