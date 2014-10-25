@@ -10,6 +10,8 @@
     var logic = require('../logic');
 
 
+    var Linkedin = require('node-linkedin')(secrets.linkedin.clientID, secrets.linkedin.clientSecret, secrets.linkedin.callbackURL);
+
 
 
     exports.apiLogin = function(req, res, next) {
@@ -150,6 +152,16 @@
 
         });
 
+    };
+    exports.getLinkedinSkills= function(req, res, next) {
+        if(!req.user) res.redirect('/');
+        var token = _.find(req.user.tokens, {
+            kind: 'linkedin'
+        });
+        var linkedin = Linkedin.init(token.accessToken);
+        linkedin.people.me(function(err, $in) {
+            res.json($in);
+        });
     };
 
 
