@@ -153,7 +153,7 @@
         });
 
     };
-    exports.getLinkedinSkills= function(req, res, next) {
+    exports.getLinkedinSkills = function(req, res, next) {
         if(!req.user) res.redirect('/');
         var token = _.find(req.user.tokens, {
             kind: 'linkedin'
@@ -164,6 +164,31 @@
         });
     };
 
+    exports.getLinkedinRecommendations = function(req, res, next) {
+        if(!req.user) res.redirect('/');
+        var token = _.find(req.user.tokens, {
+            kind: 'linkedin'
+        });
+        var linkedin = Linkedin.init(token.accessToken);
+        linkedin.people.me(function(err, $in) {
+            var recommText = "";
+
+            if ($in.recommendationsReceived._total > 0) {
+                $in.recommendationsReceived.values.forEach(function(element) {
+                    recommText = recommText + element.text;
+                });
+
+                var words = logic.process(recommText);
+                console.log(words);
+
+                if (err) return next(err);
+                res.json(words);
+            }
+            else {
+                res.json([]);
+            }
+        });
+    };
 
 
 

@@ -146,6 +146,7 @@ app.get('/user', userController.getUser);
 
 app.get('/twitter/:id', userController.getTwitterByID);
 app.get('/linkedin/:id', userController.getLinkedinSkills);
+app.get('/linkedin/recommendations/:id', userController.getLinkedinRecommendations);
 app.put('/user',userController.putUser);
 
 
