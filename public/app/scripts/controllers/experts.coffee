@@ -27,7 +27,6 @@ angular.module('expertApp')
     $rootScope.current = "experts"
 
 
-
     $scope.contact = ->
       swal("Contact request sent!", "", "success")
 
@@ -38,6 +37,8 @@ angular.module('expertApp')
 
     q.then (response) ->
       $scope.expert = response.data
+      $scope.expert.words = ["Java","Go","WebSocket","Student","Skills","Leader","Node.js","Ruby","Facbook","UserExperience","News","Wifi","WebWorker","Techcrunch"]
+
       console.log response.data
     , (response) ->
       console.log 'error'

@@ -22,7 +22,7 @@
 
                   <section ng-repeat="expert in results" class="6u">
                     <div class="box post">
-                      <a ng-href="#/experts/{{expert._id}}" class="image left"><img src="{{expert.profile.picture}}" alt=""></a>
+                      <a ng-href="#/experts/{{expert._id}}" class="image left"><img src="{{expert.profile.picture || 'http://budapesttimes.hu/wp-content/themes/newsroom14/img/placeholder.png'}}" alt=""></a>
                       <div class="inner">
                         <h3>{{expert.profile.name}}</h3>
                         <p>{{expert.description}}</p>

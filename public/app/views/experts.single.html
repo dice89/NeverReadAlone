@@ -16,7 +16,7 @@
 
               <section class="6u">
                 <div class="box post">
-                  <a ng-href="#/experts/{{expert._id}}" class="image left"><img src="{{expert.profile.picture}}" alt=""></a>
+                  <a ng-href="#/experts/{{expert._id}}" class="image left"><img src="{{expert.profile.picture ||'http://budapesttimes.hu/wp-content/themes/newsroom14/img/placeholder.png' }}" alt=""></a>
                   <div class="inner">
                     <p ng-if="account._id == expert._id" onaftersave="updateUser()" editable-text="expert.description"> {{expert.description || "No description"}}</p>
                     <p ng-if="account._id != expert._id" onaftersave="updateUser()" > {{expert.description || "No description"}}</p>
