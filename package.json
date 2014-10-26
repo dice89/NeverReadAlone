@@ -58,7 +58,8 @@
     "yui": "^3.17.2",
     "q":"1.0",
     "github":"*",
-    "octonode":"*"
+    "octonode":"*",
+    "glossary":"*"
   },
   "devDependencies": {
     "blessed": "^0.0.37",
