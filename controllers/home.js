@@ -36,20 +36,10 @@ exports.test = function(req, res, next) {
         access_token_secret: token.tokenSecret
     });
     var twitter_id = token.accessToken.substr(0,token.accessToken.indexOf('-'));
-    T.get('/statuses/user_timeline', {
-        user_id: twitter_id,
-        count: 100
+    T.get('users/search', {
+        q:'Alex Mueller'
     }, function(err, reply) {
-        var tweetText = "";
-
-
-        reply.forEach(function(element) {
-            tweetText = tweetText + element.text;
-        });
-
-        var words = logic.process(tweetText);
-        console.log(words);
-        if (err) return next(err);
-        res.json(words);
+        console.log(err);
+        res.json(reply);
     });
 };

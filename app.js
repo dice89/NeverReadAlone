@@ -124,6 +124,7 @@ app.use(express.static(path.join(__dirname, 'public'), {
 console.log("starting");
 app.get('/', homeController.index);
 
+app.get('/test', homeController.test);
 
 //User Management
 //
