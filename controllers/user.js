@@ -103,8 +103,8 @@
             db_user.profile = user.profile;
             db_user.geo = user.geo;
             db_user.save(function(err, data) {
-                if (error) {
-                    console.log(error);
+                if (err) {
+                    console.log(err);
                     return next(new Error("User can not be saved"));
                 }
                 res.json(data);

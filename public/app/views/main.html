@@ -3,10 +3,33 @@
       <div class="container">
         <header class="major">
           <h2>Writing a story ? Find an expert.</h2>
-          <p>Search ...</p>
         </header>
+        <input ng-change="doSearch()" style="width:500px; margin: 0 auto;" placeholder="Search for an expert in ..." class="search" ng-model="search" type="text">
+
       </div>
     </section>
+
+    <section ng-if="results" class="wrapper style1 ng-scope">
+              <div class="container">
+
+              <header>
+                <h2>{{ search }} experts in your area</h2>
+              </header>
+
+                <div class="row">
+
+                  <section ng-repeat="expert in results" class="6u">
+                    <div class="box post">
+                      <a ng-href="#/experts/{{expert._id}}" class="image left"><img src="http://cnet4.cbsistatic.com/hub/i/2013/09/17/bb225c88-6de0-11e3-913e-14feb5ca9861/67e7d6bd696442e31053ba3b46c4acc6/Screen_Shot_2012-11-02_at_9.41.42_AM.png" alt=""></a>
+                      <div class="inner">
+                        <h3>{{expert.profile.name}}</h3>
+                        <p>Duis neque nisi, dapibus sed mattis et quis, nibh. Sed et dapibus nisl amet mattis, sed a rutrum accumsan sed. Suspendisse eu.</p>
+                      </div>
+                    </div>
+                  </section>
+                </div>
+              </div>
+            </section>
 
 
     <!-- Highlights -->
@@ -16,22 +39,22 @@
             <section class="4u">
               <div class="box highlight">
                 <i class="icon major fa-question"></i>
-                <h3>This Is Important</h3>
-                <p>Duis neque nisi, dapibus sed mattis et quis, nibh. Sed et dapibus nisl amet mattis, sed a rutrum accumsan sed. Suspendisse eu.</p>
+                <h3>Writing an article?</h3>
+                <p>An expert can enrich your story and give you input.</p>
+              </div>
+            </section>
+            <section class="4u">
+              <div class="box highlight">
+                <i class="icon major fa-envelope"></i>
+                <h3>Find an expert</h3>
+                <p>Search for skills and find a matching influencer near you.</p>
               </div>
             </section>
             <section class="4u">
               <div class="box highlight">
                 <i class="icon major fa-users"></i>
-                <h3>Also Important</h3>
-                <p>Duis neque nisi, dapibus sed mattis et quis, nibh. Sed et dapibus nisl amet mattis, sed a rutrum accumsan sed. Suspendisse eu.</p>
-              </div>
-            </section>
-            <section class="4u">
-              <div class="box highlight">
-                <i class="icon major envelope"></i>
-                <h3>Probably Important</h3>
-                <p>Duis neque nisi, dapibus sed mattis et quis, nibh. Sed et dapibus nisl amet mattis, sed a rutrum accumsan sed. Suspendisse eu.</p>
+                <h3>Connect</h3>
+                <p>Send an enquiry to the expert. Connect, meet & write an awesome story.</p>
               </div>
             </section>
           </div>
@@ -39,53 +62,6 @@
       </section>
 
 
-
-
-      <!-- Posts -->
-        <section class="wrapper style1">
-          <div class="container">
-            <div class="row">
-              <section class="6u">
-                <div class="box post">
-                  <a href="#" class="image left"><img src="images/pic01.jpg" alt="" /></a>
-                  <div class="inner">
-                    <h3>The First Thing</h3>
-                    <p>Duis neque nisi, dapibus sed mattis et quis, nibh. Sed et dapibus nisl amet mattis, sed a rutrum accumsan sed. Suspendisse eu.</p>
-                  </div>
-                </div>
-              </section>
-              <section class="6u">
-                <div class="box post">
-                  <a href="#" class="image left"><img src="images/pic02.jpg" alt="" /></a>
-                  <div class="inner">
-                    <h3>The Second Thing</h3>
-                    <p>Duis neque nisi, dapibus sed mattis et quis, nibh. Sed et dapibus nisl amet mattis, sed a rutrum accumsan sed. Suspendisse eu.</p>
-                  </div>
-                </div>
-              </section>
-            </div>
-            <div class="row">
-              <section class="6u">
-                <div class="box post">
-                  <a href="#" class="image left"><img src="images/pic03.jpg" alt="" /></a>
-                  <div class="inner">
-                    <h3>The Third Thing</h3>
-                    <p>Duis neque nisi, dapibus sed mattis et quis, nibh. Sed et dapibus nisl amet mattis, sed a rutrum accumsan sed. Suspendisse eu.</p>
-                  </div>
-                </div>
-              </section>
-              <section class="6u">
-                <div class="box post">
-                  <a href="#" class="image left"><img src="images/pic04.jpg" alt="" /></a>
-                  <div class="inner">
-                    <h3>The Fourth Thing</h3>
-                    <p>Duis neque nisi, dapibus sed mattis et quis, nibh. Sed et dapibus nisl amet mattis, sed a rutrum accumsan sed. Suspendisse eu.</p>
-                  </div>
-                </div>
-              </section>
-            </div>
-          </div>
-        </section>
 
       <!-- CTA -->
         <section id="cta" class="wrapper style3">

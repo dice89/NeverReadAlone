@@ -1,14 +1,26 @@
 'use strict'
 
 angular.module('expertApp')
-  .factory 'Auth', ($http) ->
+  .factory 'Auth', ($http, $location) ->
 
     account = null
 
     exports =
 
-      logout = ->
-        $http.post '/api/logout'
+      login : (acc) ->
+        q = $http.post '/api/login', acc
+
+        q.then (response) ->
+          account = response.data
+          $location.path '/'
+        , (response) ->
+          console.log 'error'
+
+
+      logout : ->
+        q = $http.post '/api/logout'
+        q.then ->
+          account = null
 
       getAccount : ->
         account

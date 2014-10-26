@@ -1,9 +1,11 @@
 angular.module('expertApp')
-  .controller 'RegisterCtrl', ($scope, $rootScope, $http) ->
+  .controller 'RegisterCtrl', ($scope, $rootScope, $http, $location) ->
     $rootScope.current = "account"
 
     $scope.newAccount = {}
 
+    $scope.linkedin = ->
+      $http.get '/api/auth/linkedin'
 
     $scope.submit = ->
 
@@ -33,12 +35,8 @@ angular.module('expertApp')
     $scope.form = {}
 
     $scope.submit = ->
-      q = $http.post '/api/login', $scope.form
+      $rootScope.Auth.login $scope.form
 
-      q.then (response) ->
-        $location.path '/'
-      , (response) ->
-        console.log 'error'
 
 
 
