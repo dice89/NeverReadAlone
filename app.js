@@ -158,6 +158,9 @@ app.get('/user', userController.getUser);
 app.get('/dummy', dummyController.index);
 
 app.get('/twitter/:id', userController.getTwitterByID);
+
+app.get('/twitter/handle/:id', userController.getTwitterByHandle );
+
 app.get('/linkedin/:id', userController.getLinkedinSkills);
 app.get('/linkedin/recommendations/:id', userController.getLinkedinRecommendations);
 app.put('/user', userController.putUser);

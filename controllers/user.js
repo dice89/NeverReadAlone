@@ -153,6 +153,51 @@
         });
 
     };
+
+
+
+    exports.getTwitterByHandle = function(req, res, next) {
+        if (!req.user) res.redirect('/');
+        var token = _.find(req.user.tokens, {
+            kind: 'twitter'
+        });
+        var user_id = req.param('id');
+        var T = new Twit({
+            consumer_key: secrets.twitter.consumerKey,
+            consumer_secret: secrets.twitter.consumerSecret,
+            access_token: token.accessToken,
+            access_token_secret: token.tokenSecret
+        });
+        User.findOne({
+            _id: user_id
+        }, function(err, db_user) {
+            if (err) return next(err);
+
+            if (db_user == null) return res.json({
+                text: "no such user"
+            });
+
+            var screen_name = db_user.profile.twitter_handle || 'lc0d3r';
+            T.get('/statuses/user_timeline', {
+                screen_name: screen_name,
+                count: 100
+            }, function(err, reply) {
+                var tweetText = "";
+
+                reply.forEach(function(element) {
+                    tweetText = tweetText + element.text;
+                });
+
+                var words = logic.process(tweetText);
+               
+                //callback(err, words);
+                if (err) return next(err);
+                res.json(words);
+            });
+
+        });
+
+    };
     exports.getLinkedinSkills = function(req, res, next) {
         if (!req.user) res.redirect('/');
         var token = _.find(req.user.tokens, {
