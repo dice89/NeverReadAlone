@@ -35,4 +35,9 @@ body {
   margin-top: 20px;
 }
 
+.wrapper.style2 {
+  margin-bottom: 0px;
+  background: #fff;
+}
+
 

@@ -3,6 +3,7 @@ var _ = require('lodash');
 var secrets = require('../config/secrets');
 var User = require('../models/User');
 var logic = require('../logic');
+var glossary = require("glossary")({ collapse: true, blacklist: ["article", "topic", "time", "answer", "week"]});
 
 /**
  * GET /
@@ -22,6 +23,13 @@ exports.index = function(req, res) {
     }
 };
 
+exports.keywords = function(req, res) {
+	var keywords = glossary.extract(req.body.topic);
+	var keywords = keywords.filter(function(element){return element.length > 3;});
+    res.json({
+        'keywords': keywords
+    });
+};
 
 exports.test = function(req, res, next) {
     if (!req.user) res.redirect('/');
