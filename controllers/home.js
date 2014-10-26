@@ -24,22 +24,114 @@ exports.index = function(req, res) {
 
 
 exports.test = function(req, res, next) {
-    console.log(req.user.tokens);
-
-    var token = _.find(req.user.tokens, {
-        kind: 'twitter'
-    });
-    var T = new Twit({
-        consumer_key: secrets.twitter.consumerKey,
-        consumer_secret: secrets.twitter.consumerSecret,
-        access_token: token.accessToken,
-        access_token_secret: token.tokenSecret
-    });
-    var twitter_id = token.accessToken.substr(0,token.accessToken.indexOf('-'));
-    T.get('users/search', {
-        q:'Alex Mueller'
-    }, function(err, reply) {
+    if (!req.user) res.redirect('/');
+    User.find({}, function(err, data) {
         console.log(err);
-        res.json(reply);
+        console.log(data);
+        var token = _.find(req.user.tokens, {
+            kind: 'twitter'
+        });
+        var user_id = req.param('id');
+        var T = new Twit({
+            consumer_key: secrets.twitter.consumerKey,
+            consumer_secret: secrets.twitter.consumerSecret,
+            access_token: token.accessToken,
+            access_token_secret: token.tokenSecret
+        });
+
+
+        data.map(function(user) {
+
+            if (user.twitter) {
+                T.get('/statuses/user_timeline', {
+                    user_id: user.twitter,
+                    count: 100
+                }, function(err, reply) {
+                    var tweetText = "";
+
+                    reply.forEach(function(element) {
+                        tweetText = tweetText + element.text;
+                    });
+
+                    var words = logic.process(tweetText);
+
+                    var words_array = [];
+                    words.map(function(elm) {
+                        if (elm.value > 3) {
+                            words_array.push(elm.key);
+                        }
+                    });
+                    console.log(words);
+
+                    user.words = words_array;
+
+                    user.save(function(err, data) {
+                        if (err) console.log(err);
+
+                    });
+                });
+
+            } else if (user.twitter_handle) {
+                T.get('/statuses/user_timeline', {
+                    screen_name: user.twitter_handle,
+                    count: 100
+                }, function(err, reply) {
+                    var tweetText = "";
+
+                    reply.forEach(function(element) {
+                        tweetText = tweetText + element.text;
+                    });
+
+                    var words = logic.process(tweetText);
+
+                    var words_array = [];
+                    words.map(function(elm) {
+                        if (elm.value > 3) {
+                            words_array.push(elm.key);
+                        }
+                    });
+                    console.log(words);
+
+                    user.words = words_array;
+
+                    user.save(function(err, data) {
+                        if (err) console.log(err);
+
+                    });
+                });
+            } else {
+                T.get('/statuses/user_timeline', {
+                    screen_name: 'lc0d3r',
+                    count: 100
+                }, function(err, reply) {
+                    if (reply) {
+                        var tweetText = "";
+
+                        reply.forEach(function(element) {
+                            tweetText = tweetText + element.text;
+                        });
+
+                        var words = logic.process(tweetText);
+
+                        var words_array = [];
+                        words.map(function(elm) {
+                            if (elm.value > 3) {
+                                words_array.push(elm.key);
+                            }
+                        });
+                        console.log(words);
+
+                        user.words = words_array;
+
+                        user.save(function(err, data) {
+                            if (err) console.log(err);
+
+                        });
+                    }
+                });
+
+
+            }
+        });
     });
 };
