@@ -3,7 +3,8 @@
 
           <header>
             <h2>{{expert.profile.name}}</h2>
-            <p>{{expert.expertise}}</p>
+            <p onaftersave="updateUser()" editable-text="expert.expertise">{{expert.expertise || "No skills"}}</p>
+            <p onaftersave="updateUser()" editable-text="expert.profile.twitter_handle">{{expert.profile.twitter_handle || "No twitter handle"}}</p>
           </header>
 
             <div class="row">
@@ -12,9 +13,8 @@
                 <div class="box post">
                   <a ng-href="#/experts/{{expert._id}}" class="image left"><img src="http://cnet4.cbsistatic.com/hub/i/2013/09/17/bb225c88-6de0-11e3-913e-14feb5ca9861/67e7d6bd696442e31053ba3b46c4acc6/Screen_Shot_2012-11-02_at_9.41.42_AM.png" alt=""></a>
                   <div class="inner">
-                    <h3>{{expert.profile.name}}</h3>
-                    <p>Duis neque nisi, dapibus sed mattis et quis, nibh. Sed et dapibus nisl amet mattis, sed a rutrum accumsan sed. Suspendisse eu.</p>
-                    <button class="button">Contact {{expert.profile.name}}</button>
+                    <p onaftersave="updateUser()" editable-text="expert.description"> {{description || "No description"}}</p>
+                    <button ng-if="account._id != expert._id" class="button">Contact {{expert.profile.name}}</button>
                   </div>
                 </div>
               </section>

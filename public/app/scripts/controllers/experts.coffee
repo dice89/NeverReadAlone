@@ -26,6 +26,9 @@ angular.module('expertApp')
   .controller 'ExpertsSingleCtrl', ($scope, $rootScope, $http, $routeParams) ->
     $rootScope.current = "experts"
 
+    $scope.updateUser = ->
+      $http.put '/api/user', $scope.expert
+
     q = $http.get '/api/user/' +  $routeParams.id
 
     q.then (response) ->

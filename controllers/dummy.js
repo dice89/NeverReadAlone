@@ -14,7 +14,7 @@ exports.index = function(req, res) {
 	});
 
 	userNameList.forEach(function(entry) {
-		var user = new User({ profile:{name:entry,gender:'male'},email:entry+'@test.com', password:'123456', expertise:'java nodejs' });
+		var user = new User({ profile:{name:entry,gender:'male'},email:entry+'@test.com', password:'123456', expertise:'java nodejs', description:'Example description' });
 		user.save(function (err, user) {
 		  if (err) return console.error(err);
 		 	 console.log(user +" user saved");

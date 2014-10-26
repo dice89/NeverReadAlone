@@ -2,6 +2,7 @@
 
 app = angular
   .module('expertApp', [
+    'xeditable'
     'ngCookies',
     'ngResource',
     'ngSanitize',

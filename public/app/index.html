@@ -18,6 +18,8 @@
     <link rel="stylesheet" href="styles/style.css" />
     <link rel="stylesheet" href="styles/style-wide.css" />
     <link rel="stylesheet" href="styles/main.css">
+    <link href="bower_components/angular-xeditable/dist/css/xeditable.css" rel="stylesheet">
+
 
     <!-- endbuild -->
   </head>
@@ -37,10 +39,10 @@
               <li ng-class="{current:current=='account'}">
                 <a href="">Account</a>
                 <ul>
-                  <li ng-class="{current:current=='login'}"><a ng-href="#login">Profile</a></li>
-                  <li ng-class="{current:current=='login'}"><a ng-href="#login">Login</a></li>
-                  <li ng-class="{current:current=='register'}"><a ng-href="#register">Register</a></li>
-                  <li ng-class="{current:current=='register'}"><a ng-click="Auth.logout()"  ng-href="">Logout</a></li>
+                  <li ng-if="account" ng-class="{current:current=='login'}"><a ng-href="#/experts/{{account._id}}">Profile</a></li>
+                  <li ng-if="!account" ng-class="{current:current=='login'}"><a ng-href="#login">Login</a></li>
+                  <li ng-if="!account" ng-class="{current:current=='register'}"><a ng-href="#register">Register</a></li>
+                  <li ng-if="account" ng-class="{current:current=='register'}"><a ng-click="Auth.logout()"  ng-href="">Logout</a></li>
 
                 </ul>
 
@@ -79,6 +81,8 @@
     <!-- endbuild -->
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
+        <script src="bower_components/angular-xeditable/dist/js/xeditable.js"></script>
+
         <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
         <script src="scripts/jquery.dropotron.min.js"></script>
         <script src="scripts/skel.min.js"></script>
