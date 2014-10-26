@@ -25,6 +25,7 @@ exports.index = function(req, res) {
 
 exports.keywords = function(req, res) {
 	var keywords = glossary.extract(req.body.topic);
+	var keywords = keywords.filter(function(element){return element.length > 3;});
     res.json({
         'keywords': keywords
     });
