@@ -155,6 +155,7 @@ app.get('/auth/twitter/callback', passport.authenticate('twitter', {
 
 app.post('/user/create', userController.createUser);
 app.get('/user', userController.getUser);
+app.get('/dummy', dummyController.index);
 
 app.get('/twitter/:id', userController.getTwitterByID);
 app.get('/linkedin/:id', userController.getLinkedinSkills);
