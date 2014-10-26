@@ -63,7 +63,7 @@
         var lat = parseFloat(req.param('lat'));
         var lng = parseFloat(req.param('lng'));
 
-        var radius = parseFloat(req.param('radius'));
+        var radius = parseFloat(req.param('radius')) || 50000; 
 
         console.log(lat);
         console.log(lng);
