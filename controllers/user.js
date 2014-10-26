@@ -114,7 +114,7 @@
     };
 
     exports.getTwitterByID = function(req, res, next) {
-        if(!req.user) res.redirect('/');
+        if (!req.user) res.redirect('/');
         var token = _.find(req.user.tokens, {
             kind: 'twitter'
         });
@@ -128,9 +128,11 @@
         User.findOne({
             _id: user_id
         }, function(err, db_user) {
-            if(err) return next(err);
+            if (err) return next(err);
 
-            if(db_user== null) return res.json({text:"no such user"});
+            if (db_user == null) return res.json({
+                text: "no such user"
+            });
             T.get('/statuses/user_timeline', {
                 user_id: db_user.twitter,
                 count: 100
@@ -152,7 +154,7 @@
 
     };
     exports.getLinkedinSkills = function(req, res, next) {
-        if(!req.user) res.redirect('/');
+        if (!req.user) res.redirect('/');
         var token = _.find(req.user.tokens, {
             kind: 'linkedin'
         });
@@ -163,7 +165,7 @@
     };
 
     exports.getLinkedinRecommendations = function(req, res, next) {
-        if(!req.user) res.redirect('/');
+        if (!req.user) res.redirect('/');
         var token = _.find(req.user.tokens, {
             kind: 'linkedin'
         });
@@ -181,8 +183,7 @@
 
                 if (err) return next(err);
                 res.json(words);
-            }
-            else {
+            } else {
                 res.json([]);
             }
         });
@@ -216,7 +217,9 @@
         console.log('Current user')
         if (req.user == null) {
             res.status(401);
-            res.json({message:'User not logged in'});
+            res.json({
+                message: 'User not logged in'
+            });
         } else {
             res.json(req.user);
         }
@@ -236,14 +239,36 @@
 
     exports.search = function(req, res, next) {
         var search = req.param('search');
+
+        var lat = parseFloat(req.param('lat'));
+        var lng = parseFloat(req.param('lng'));
+
+        var radius = parseFloat(req.param('radius'));
+
+        console.log(lat);
+        console.log(lng);
+        console.log(radius);
+
         console.log('search' + search);
-        User.find({
+
+
+        var query = User.find({
+
+
             $text: {
                 $search: search
             }
-        }, function(err, users) {
-            res.json(users);
-        });
+
+
+        })
+
+
+        query.exec()
+            .then(function(data) {
+                res.json(data);
+            }, function(err) {
+                return next(err);
+            });
 
     };
 

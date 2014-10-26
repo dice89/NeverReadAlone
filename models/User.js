@@ -13,6 +13,7 @@ var userSchema = new mongoose.Schema({
     twitter:String,
     tokens: Array,
     expertise: String,
+    github:String,
     contactRequest: [{
         time: { type : Date, default: Date.now },
         text:String,
@@ -72,9 +73,8 @@ userSchema.index({"expertise":"text"});
 
 userSchema.pre('save', function(next) {
     var user = this;
-
+    next();
     if (!user.isModified('password')) return next();
-
     bcrypt.genSalt(5, function(err, salt) {
         if (err) return next(err);
 
