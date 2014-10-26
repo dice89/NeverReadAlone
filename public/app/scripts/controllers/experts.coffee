@@ -26,6 +26,11 @@ angular.module('expertApp')
   .controller 'ExpertsSingleCtrl', ($scope, $rootScope, $http, $routeParams) ->
     $rootScope.current = "experts"
 
+
+
+    $scope.contact = ->
+      swal("Contact request sent!", "", "success")
+
     $scope.updateUser = ->
       $http.put '/api/user', $scope.expert
 

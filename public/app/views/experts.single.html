@@ -3,20 +3,39 @@
 
           <header>
             <h2>{{expert.profile.name}}</h2>
-            <p onaftersave="updateUser()" editable-text="expert.expertise">{{expert.expertise || "No skills"}}</p>
-            <p onaftersave="updateUser()" editable-text="expert.profile.twitter_handle">{{expert.profile.twitter_handle || "No twitter handle"}}</p>
+            <p ng-if="account._id == expert._id" onaftersave="updateUser()" editable-text="expert.expertise">{{expert.expertise || "No skills"}}</p>
+
+            <p ng-if="account._id != expert._id" onaftersave="updateUser()">{{expert.expertise || "No skills"}}</p>
+
+
+            <p ng-if="account._id == expert._id" editable-text="expert.profile.twitter_handle" onaftersave="updateUser()">{{expert.profile.twitter_handle || "No twitter handle"}}</p>
+            <p ng-if="account._id != expert._id" onaftersave="updateUser()">{{expert.profile.twitter_handle || "No twitter handle"}}</p>
           </header>
 
             <div class="row">
 
               <section class="6u">
                 <div class="box post">
-                  <a ng-href="#/experts/{{expert._id}}" class="image left"><img src="http://cnet4.cbsistatic.com/hub/i/2013/09/17/bb225c88-6de0-11e3-913e-14feb5ca9861/67e7d6bd696442e31053ba3b46c4acc6/Screen_Shot_2012-11-02_at_9.41.42_AM.png" alt=""></a>
+                  <a ng-href="#/experts/{{expert._id}}" class="image left"><img src="{{expert.profile.picture}}" alt=""></a>
                   <div class="inner">
-                    <p onaftersave="updateUser()" editable-text="expert.description"> {{description || "No description"}}</p>
-                    <button ng-if="account._id != expert._id" class="button">Contact {{expert.profile.name}}</button>
+                    <p ng-if="account._id == expert._id" onaftersave="updateUser()" editable-text="expert.description"> {{expert.description || "No description"}}</p>
+                    <p ng-if="account._id != expert._id" onaftersave="updateUser()" > {{expert.description || "No description"}}</p>
+
+                    <div class="" ng-if="account._id != expert._id">
+                    <label for="">Contact</label>
+                    <textarea ng-model="contact.text" name="" id="" cols="30" rows="10"></textarea>
+                    <br />
+                    <button ng-if="account._id != expert._id" ng-click="contact()" class="button">Contact {{expert.profile.name}}</button>
+                    </div>
+
+
                   </div>
                 </div>
+              </section>
+
+              <section ng-if="expert.words" class="6u">
+                <wordcloud words="expert.words"></wordcloud>
+
               </section>
             </div>
           </div>

@@ -2,6 +2,8 @@
 
 app = angular
   .module('expertApp', [
+    'd3'
+    'angularSpinner'
     'xeditable'
     'ngCookies',
     'ngResource',

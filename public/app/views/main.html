@@ -9,6 +9,8 @@
       </div>
     </section>
 
+
+
     <section ng-if="results" class="wrapper style1 ng-scope">
               <div class="container">
 
@@ -20,10 +22,11 @@
 
                   <section ng-repeat="expert in results" class="6u">
                     <div class="box post">
-                      <a ng-href="#/experts/{{expert._id}}" class="image left"><img src="http://cnet4.cbsistatic.com/hub/i/2013/09/17/bb225c88-6de0-11e3-913e-14feb5ca9861/67e7d6bd696442e31053ba3b46c4acc6/Screen_Shot_2012-11-02_at_9.41.42_AM.png" alt=""></a>
+                      <a ng-href="#/experts/{{expert._id}}" class="image left"><img src="{{expert.profile.picture}}" alt=""></a>
                       <div class="inner">
                         <h3>{{expert.profile.name}}</h3>
-                        <p>Duis neque nisi, dapibus sed mattis et quis, nibh. Sed et dapibus nisl amet mattis, sed a rutrum accumsan sed. Suspendisse eu.</p>
+                        <p>{{expert.description}}</p>
+                        <p>{{expert.expertise}}</p>
                       </div>
                     </div>
                   </section>
@@ -53,7 +56,7 @@
             <section class="4u">
               <div class="box highlight">
                 <i class="icon major fa-users"></i>
-                <h3>Connect</h3>
+                <h3>Connect & Meet</h3>
                 <p>Send an enquiry to the expert. Connect, meet & write an awesome story.</p>
               </div>
             </section>
@@ -67,8 +70,8 @@
         <section id="cta" class="wrapper style3">
           <div class="container">
             <header>
-              <h2>Are you ready to continue your quest?</h2>
-              <a href="#" class="button">Insert Coin</a>
+              <h2>Sign up as an expert</h2>
+              <a href="#" class="button">Register</a>
             </header>
           </div>
         </section>
