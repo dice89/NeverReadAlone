@@ -162,6 +162,8 @@ app.get('/linkedin/:id', userController.getLinkedinSkills);
 app.get('/linkedin/recommendations/:id', userController.getLinkedinRecommendations);
 app.put('/user', userController.putUser);
 
+app.post('/keywords', homeController.keywords);
+
 
 
 /**
