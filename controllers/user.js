@@ -36,9 +36,7 @@
             }
             req.logIn(user, function(err) {
                 if (err) return next(err);
-                return res.json({
-                    status: 1
-                });
+                return res.json(user);
             });
         })(req, res, next);
     };

@@ -56,7 +56,9 @@
     "uglify-js": "^2.4.15",
     "validator": "^3.17.1",
     "yui": "^3.17.2",
-    "q":"1.0"
+    "q":"1.0",
+    "github":"*",
+    "octonode":"*"
   },
   "devDependencies": {
     "blessed": "^0.0.37",
